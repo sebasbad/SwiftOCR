@@ -112,7 +112,7 @@ public class SwiftOCR {
         
     }
     
-    #if os(iOS)
+    //#if os(iOS)
     
     /**
      
@@ -370,55 +370,18 @@ public class SwiftOCR {
     public func preprocessImageForOCR(image:UIImage?) -> UIImage? {
         
         func getDodgeBlendImage(inputImage: UIImage) -> UIImage {
-            let image = GPUImagePicture(image: inputImage)
-            let image2 = GPUImagePicture(image: inputImage)
+            let saturationFilter = SaturationAdjustment()
+            let invertFilter     = ColorInversion()
+            let blurFilter       = GaussianBlur()
+            let opacityFilter    = OpacityAdjustment()
+            let dodgeFilter      = 
             
-            //Img 1
-            
-            let grayFilter = GPUImageGrayscaleFilter()
-            image.addTarget(grayFilter)
-            
-            let invertFilter = GPUImageColorInvertFilter()
-            grayFilter.addTarget(invertFilter)
-            
-            let blurFilter = GPUImageGaussianBlurFilter()
+            saturationFilter.saturation   = -2.0
             blurFilter.blurRadiusInPixels = 10
-            invertFilter.addTarget(blurFilter)
+            opacityFilter.opacity         = 0.93
             
-            let opacityFilter = GPUImageOpacityFilter()
-            opacityFilter.opacity = 0.93
-            blurFilter.addTarget(opacityFilter)
-            
-            opacityFilter.useNextFrameForImageCapture()
-            
-            //Img 2
-            
-            let grayFilter2 = GPUImageGrayscaleFilter()
-            image2.addTarget(grayFilter2)
-            
-            grayFilter2.useNextFrameForImageCapture()
-            
-            //Blend
-            
-            let dodgeBlendFilter = GPUImageColorDodgeBlendFilter()
-            
-            grayFilter2.addTarget(dodgeBlendFilter)
-            image2.processImage()
-            
-            opacityFilter.addTarget(dodgeBlendFilter)
-            
-            dodgeBlendFilter.useNextFrameForImageCapture()
-            image.processImage()
-            
-            var processedImage:UIImage? = dodgeBlendFilter.imageFromCurrentFramebufferWithOrientation(UIImageOrientation.Up)
-            
-            while processedImage?.size == CGSize.zero {
-                dodgeBlendFilter.useNextFrameForImageCapture()
-                image.processImage()
-                processedImage = dodgeBlendFilter.imageFromCurrentFramebufferWithOrientation(.Up)
-            }
-            
-            return processedImage!
+            pictureInput --> saturationFilter --> invertFilter --> invertFilter --> blurFilter --> opacityFilter --> pictureOutput
+        
         }
         
         if let image = image ?? self.image {
@@ -510,7 +473,7 @@ public class SwiftOCR {
         return imageData
     }
     
-    #else
+    /*#else
     
     /**
      
@@ -909,7 +872,7 @@ public class SwiftOCR {
         return imageData
     }
     
-    #endif
+    #endif*/
     
 }
 

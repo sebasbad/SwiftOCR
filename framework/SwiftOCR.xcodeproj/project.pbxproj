@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370038041CD39D74004BF5C4 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370037FB1CD39D5D004BF5C4 /* GPUImage.framework */; };
+		370038051CD39D78004BF5C4 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370037FB1CD39D5D004BF5C4 /* GPUImage.framework */; };
 		373ED0B31CC9071D00C4758B /* SwiftOCR.h in Headers */ = {isa = PBXBuildFile; fileRef = 373ED0B21CC9071D00C4758B /* SwiftOCR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		373ED0BA1CC9071D00C4758B /* SwiftOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED0AF1CC9071C00C4758B /* SwiftOCR.framework */; };
 		373ED0BF1CC9071D00C4758B /* SwiftOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0BE1CC9071D00C4758B /* SwiftOCRTests.swift */; };
@@ -52,11 +54,37 @@
 		377885721CCCF37400A41020 /* TrainingBackground_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856B1CCCF37400A41020 /* TrainingBackground_3.png */; };
 		377885731CCCF37400A41020 /* TrainingBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856C1CCCF37400A41020 /* TrainingBackground_4.png */; };
 		377885741CCCF37400A41020 /* TrainingBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856C1CCCF37400A41020 /* TrainingBackground_4.png */; };
-		377ECDCB1CCA43290050EFD4 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1401CC9521B00C4758B /* GPUImage.framework */; };
-		377ECDCC1CCA432E0050EFD4 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1491CC9521B00C4758B /* GPUImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		370037FA1CD39D5D004BF5C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 370037F21CD39D5C004BF5C4 /* GPUImage-iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCD1B1251C66A262001F2BDC;
+			remoteInfo = GPUImage;
+		};
+		370037FC1CD39D5D004BF5C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 370037F21CD39D5C004BF5C4 /* GPUImage-iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCD1B12F1C66A262001F2BDC;
+			remoteInfo = GPUImageTests;
+		};
+		370038001CD39D5D004BF5C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 370037F51CD39D5D004BF5C4 /* GPUImage-Mac.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC6E7CAB1C39A9D8006DF678;
+			remoteInfo = GPUImage;
+		};
+		370038021CD39D5D004BF5C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 370037F51CD39D5D004BF5C4 /* GPUImage-Mac.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC6E7CB51C39A9D8006DF678;
+			remoteInfo = GPUImageTests;
+		};
 		373ED0BB1CC9071D00C4758B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 373ED0A61CC9071C00C4758B /* Project object */;
@@ -71,30 +99,11 @@
 			remoteGlobalIDString = 373ED0E51CC909A400C4758B;
 			remoteInfo = "SwiftOCR Mac";
 		};
-		373ED13F1CC9521B00C4758B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 373ED0D21CC908BD00C4758B /* GPUImageMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BCA3F31C17239B6500E28AEC;
-			remoteInfo = GPUImage;
-		};
-		373ED1461CC9521B00C4758B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 373ED0CF1CC908BD00C4758B /* GPUImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BCF1A33414DDB1EC00852800;
-			remoteInfo = GPUImage;
-		};
-		373ED1481CC9521B00C4758B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 373ED0CF1CC908BD00C4758B /* GPUImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BCE209E51943F20C002FEED8;
-			remoteInfo = GPUImageFramework;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		370037F21CD39D5C004BF5C4 /* GPUImage-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "GPUImage-iOS.xcodeproj"; path = "GPUImage2-master/framework/GPUImage-iOS.xcodeproj"; sourceTree = "<group>"; };
+		370037F51CD39D5D004BF5C4 /* GPUImage-Mac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "GPUImage-Mac.xcodeproj"; path = "GPUImage2-master/framework/GPUImage-Mac.xcodeproj"; sourceTree = "<group>"; };
 		373ED0AF1CC9071C00C4758B /* SwiftOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		373ED0B21CC9071D00C4758B /* SwiftOCR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftOCR.h; sourceTree = "<group>"; };
 		373ED0B41CC9071D00C4758B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -103,8 +112,6 @@
 		373ED0C01CC9071D00C4758B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		373ED0C91CC9076300C4758B /* SwiftOCR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCR.swift; sourceTree = "<group>"; };
 		373ED0CA1CC9076300C4758B /* SwiftOCRTraining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOCRTraining.swift; sourceTree = "<group>"; };
-		373ED0CF1CC908BD00C4758B /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "GPUImage-master/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
-		373ED0D21CC908BD00C4758B /* GPUImageMac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImageMac.xcodeproj; path = "GPUImage-master/framework/GPUImageMac.xcodeproj"; sourceTree = "<group>"; };
 		373ED0E61CC909A500C4758B /* SwiftOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		373ED0EF1CC909A500C4758B /* SwiftOCR MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftOCR MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		373ED1001CC90A2300C4758B /* FFNN+Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FFNN+Storage.swift"; sourceTree = "<group>"; };
@@ -131,7 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				377ECDCC1CCA432E0050EFD4 /* GPUImage.framework in Frameworks */,
+				370038041CD39D74004BF5C4 /* GPUImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				377ECDCB1CCA43290050EFD4 /* GPUImage.framework in Frameworks */,
+				370038051CD39D78004BF5C4 /* GPUImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +169,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		370037F31CD39D5C004BF5C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				370037FB1CD39D5D004BF5C4 /* GPUImage.framework */,
+				370037FD1CD39D5D004BF5C4 /* GPUImageTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		370037F61CD39D5D004BF5C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				370038011CD39D5D004BF5C4 /* GPUImage.framework */,
+				370038031CD39D5D004BF5C4 /* GPUImage.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		373ED0A51CC9071C00C4758B = {
 			isa = PBXGroup;
 			children = (
@@ -223,31 +248,14 @@
 			children = (
 				373ED0B21CC9071D00C4758B /* SwiftOCR.h */,
 				373ED0B41CC9071D00C4758B /* Info.plist */,
-				373ED0CF1CC908BD00C4758B /* GPUImage.xcodeproj */,
-				373ED0D21CC908BD00C4758B /* GPUImageMac.xcodeproj */,
+				370037F21CD39D5C004BF5C4 /* GPUImage-iOS.xcodeproj */,
+				370037F51CD39D5D004BF5C4 /* GPUImage-Mac.xcodeproj */,
 				373ED1631CC9540100C4758B /* Realistic Training Images */,
 				373ED0FF1CC90A2300C4758B /* FFNN */,
 				373ED12F1CC917A500C4758B /* Extensions.swift */,
 				373ED1991CC9634400C4758B /* UnionFind.swift */,
 			);
 			name = "Supporting files";
-			sourceTree = "<group>";
-		};
-		373ED13C1CC9521B00C4758B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				373ED1401CC9521B00C4758B /* GPUImage.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		373ED1411CC9521B00C4758B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				373ED1471CC9521B00C4758B /* libGPUImage.a */,
-				373ED1491CC9521B00C4758B /* GPUImage.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		373ED1631CC9540100C4758B /* Realistic Training Images */ = {
@@ -401,12 +409,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 373ED1411CC9521B00C4758B /* Products */;
-					ProjectRef = 373ED0CF1CC908BD00C4758B /* GPUImage.xcodeproj */;
+					ProductGroup = 370037F31CD39D5C004BF5C4 /* Products */;
+					ProjectRef = 370037F21CD39D5C004BF5C4 /* GPUImage-iOS.xcodeproj */;
 				},
 				{
-					ProductGroup = 373ED13C1CC9521B00C4758B /* Products */;
-					ProjectRef = 373ED0D21CC908BD00C4758B /* GPUImageMac.xcodeproj */;
+					ProductGroup = 370037F61CD39D5D004BF5C4 /* Products */;
+					ProjectRef = 370037F51CD39D5D004BF5C4 /* GPUImage-Mac.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -420,25 +428,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		373ED1401CC9521B00C4758B /* GPUImage.framework */ = {
+		370037FB1CD39D5D004BF5C4 /* GPUImage.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = GPUImage.framework;
-			remoteRef = 373ED13F1CC9521B00C4758B /* PBXContainerItemProxy */;
+			remoteRef = 370037FA1CD39D5D004BF5C4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		373ED1471CC9521B00C4758B /* libGPUImage.a */ = {
+		370037FD1CD39D5D004BF5C4 /* GPUImageTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libGPUImage.a;
-			remoteRef = 373ED1461CC9521B00C4758B /* PBXContainerItemProxy */;
+			fileType = wrapper.cfbundle;
+			path = GPUImageTests.xctest;
+			remoteRef = 370037FC1CD39D5D004BF5C4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		373ED1491CC9521B00C4758B /* GPUImage.framework */ = {
+		370038011CD39D5D004BF5C4 /* GPUImage.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = GPUImage.framework;
-			remoteRef = 373ED1481CC9521B00C4758B /* PBXContainerItemProxy */;
+			remoteRef = 370038001CD39D5D004BF5C4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		370038031CD39D5D004BF5C4 /* GPUImage.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GPUImage.xctest;
+			remoteRef = 370038021CD39D5D004BF5C4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
