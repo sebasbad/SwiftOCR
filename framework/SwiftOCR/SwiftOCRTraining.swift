@@ -266,34 +266,18 @@ public class SwiftOCRTraining {
             #endif
             
             //Distort Image
-            
-            let transformImage = GPUImagePicture(image: currentImage)
-            let transformFilter = GPUImageTransformFilter()
-            
+
+            let transformFilter = TransformOperation()
             var affineTransform = CGAffineTransform()
             
             affineTransform.a  = 1.05 + (       CGFloat(arc4random())/CGFloat(UINT32_MAX) * 0.1 )
             affineTransform.b  = 0    + (0.01 - CGFloat(arc4random())/CGFloat(UINT32_MAX) * 0.02)
             affineTransform.c  = 0    + (0.03 - CGFloat(arc4random())/CGFloat(UINT32_MAX) * 0.06)
             affineTransform.d  = 1.05 + (       CGFloat(arc4random())/CGFloat(UINT32_MAX) * 0.1 )
+   
+            transformFilter.transform = Matrix4x4(affineTransform)
             
-            transformFilter.affineTransform = affineTransform
-            transformImage.addTarget(transformFilter)
-            
-            transformFilter.useNextFrameForImageCapture()
-            transformImage.processImage()
-            
-            #if os(iOS)
-                var transformedImage:UIImage? = transformFilter.imageFromCurrentFramebufferWithOrientation(.Up)
-            #else
-                var transformedImage:NSImage? = transformFilter.imageFromCurrentFramebufferWithOrientation(.Up)
-            #endif
-            
-            while transformedImage?.size == CGSize.zero {
-                transformFilter.useNextFrameForImageCapture()
-                transformImage.processImage()
-                transformedImage = transformFilter.imageFromCurrentFramebufferWithOrientation(.Up)
-            }
+            let transformedImage  = currentImage.filterWithOperation(transformFilter)
             
             let preprocessedImage = ocrInstance.preprocessImageForOCR(transformedImage)
             
