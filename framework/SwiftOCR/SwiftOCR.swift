@@ -189,11 +189,11 @@ public class SwiftOCR {
                             } else if y > 0 { //Top pixel
                                 if data[pixelIndex(x-1,y)] != 255 { //Left Label
                                     if data[pixelIndex(x,y-1)] != 255 { //Top Label
-    
+                                        
                                         if data[pixelIndex(x,y-1)] != data[pixelIndex(x-1,y)] {
                                             labelsUnion.unionSetsContaining(data[pixelIndex(x,y-1)], and: data[pixelIndex(x-1,y)])
                                         }
-    
+                                        
                                         data[pixelInfo] = data[pixelIndex(x,y-1)]
                                     } else { //Top no Label
                                         data[pixelInfo] = data[pixelIndex(x-1,y)]
@@ -362,36 +362,25 @@ public class SwiftOCR {
      
      Uses the default preprocessing algorithm to binarize the image. It uses the [GPUImage framework](https://github.com/BradLarson/GPUImage).
      
-     - Parameter image: The image which should be binarized. If you pass in nil, the `SwiftOCR().image` will be used.
-     - Retuns:          The binarized image.
+     - Parameter inputImage: The image which should be binarized. If you pass in nil, the `SwiftOCR().image` will be used.
+     - Retuns:               The binarized image.
      
      */
     
-    public func preprocessImageForOCR(image:UIImage?) -> UIImage? {
+    public func preprocessImageForOCR(inputImage:UIImage?) -> UIImage? {
         
-        func getDodgeBlendImage(inputImage: UIImage) -> UIImage {
-            let saturationFilter = SaturationAdjustment()
-            let invertFilter     = ColorInversion()
-            let blurFilter       = GaussianBlur()
-            let opacityFilter    = OpacityAdjustment()
-            let dodgeFilter      = ColorDodgeBlend()
+        if let image = inputImage ?? image {
             
-            saturationFilter.saturation   = -2.0
-            blurFilter.blurRadiusInPixels = 10
-            opacityFilter.opacity         = 0.93
+            let saturationFilter    = SaturationAdjustment()
+            let saturationFilterTwo = SaturationAdjustment()
+            let invertFilter        = ColorInversion()
+            let blurFilter          = BoxBlur()
+            let dodgeFilter         = ColorDodgeBlend()
             
-            let dodgeImage = inputImage.filterWithPipeline{input, output in
-                input --> saturationFilter --> dodgeFilter
-                input --> saturationFilter --> invertFilter --> blurFilter --> opacityFilter --> dodgeFilter --> output
-            }
-    
-            return dodgeImage
-        
-        }
-        
-        if let image = image ?? self.image {
-            let dodgeBlendImage        = getDodgeBlendImage(image)
-
+            saturationFilter.saturation    = -2.0
+            saturationFilterTwo.saturation = -2.0
+            blurFilter.blurRadiusInPixels  = 10
+            
             let medianFilter           = MedianFilter()
             let openingFilter          = OpeningFilter()
             let bilateralFilter        = BilateralBlur()
@@ -406,9 +395,13 @@ public class SwiftOCR {
             secondBrightnessFilter.brightness           = -0.08
             thresholdFilter.threshold                   = 0.5
             
-            let processedImage = dodgeBlendImage.filterWithPipeline{input, output in
-                input --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> thresholdFilter --> output
+            
+            let processedImage = image.filterWithPipeline{input, output in
+                input --> saturationFilter --> dodgeFilter
+                input --> saturationFilterTwo --> invertFilter --> blurFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> thresholdFilter --> output
             }
+//                input --> saturationFilterTwo --> invertFilter --> blurFilter --> opacityFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> thresholdFilter --> output
+//            }
             
             return processedImage
         } else {
@@ -592,7 +585,7 @@ public class SwiftOCR {
                 
                 for y in 0..<Int(inputImageHeight) {
                     for x in 0..<Int(inputImageWidth) {
-                        let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * 4
+                        let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * bitmapRep.samplesPerPixel
                         
                         if data[pixelInfo] == UInt16(label) {
                             minX = min(minX, x)
@@ -650,6 +643,7 @@ public class SwiftOCR {
                 let cropRect = rect.insetBy(dx: CGFloat(xMergeRadius), dy: CGFloat(yMergeRadius))
                 if let croppedCGImage = CGImageCreateWithImageInRect(cgImage, cropRect) {
                     let croppedImage = NSImage(CGImage: croppedCGImage, size: cropRect.size)
+                    print(croppedImage)
                     outputImages.append((croppedImage, cropRect))
                 }
             }
@@ -707,35 +701,24 @@ public class SwiftOCR {
      
      Uses the default preprocessing algorithm to binarize the image. It uses the [GPUImage framework](https://github.com/BradLarson/GPUImage).
      
-     - Parameter image: The image which should be binarized. If you pass in nil, the SwiftOCR().image will be used.
-     - Retuns:          The binarized image.
+     - Parameter inputImage: The image which should be binarized. If you pass in nil, the SwiftOCR().image will be used.
+     - Retuns:               The binarized image.
      
      */
     
-    public func preprocessImageForOCR(image:NSImage?) -> NSImage? {
+    public func preprocessImageForOCR(inputImage:NSImage?) -> NSImage? {
         
-        func getDodgeBlendImage(inputImage: NSImage) -> NSImage {
-            let saturationFilter = SaturationAdjustment()
-            let invertFilter     = ColorInversion()
-            let blurFilter       = GaussianBlur()
-            let opacityFilter    = OpacityAdjustment()
-            let dodgeFilter      = ColorDodgeBlend()
+        if let image = inputImage ?? image {
             
-            saturationFilter.saturation   = -2.0
-            blurFilter.blurRadiusInPixels = 10
-            opacityFilter.opacity         = 0.93
+            let saturationFilter    = SaturationAdjustment()
+            let saturationFilterTwo = SaturationAdjustment()
+            let invertFilter        = ColorInversion()
+            let blurFilter          = BoxBlur()
+            let dodgeFilter         = ColorDodgeBlend()
             
-            let dodgeImage = inputImage.filterWithPipeline{input, output in
-                input --> saturationFilter --> dodgeFilter
-                input --> saturationFilter --> invertFilter --> blurFilter --> opacityFilter --> dodgeFilter --> output
-            }
-            
-            return dodgeImage
-            
-        }
-        
-        if let image = image ?? self.image {
-            let dodgeBlendImage        = getDodgeBlendImage(image)
+            saturationFilter.saturation    = -2.0
+            saturationFilterTwo.saturation = -2.0
+            blurFilter.blurRadiusInPixels  = 10
             
             let medianFilter           = MedianFilter()
             let openingFilter          = OpeningFilter()
@@ -751,17 +734,20 @@ public class SwiftOCR {
             secondBrightnessFilter.brightness           = -0.08
             thresholdFilter.threshold                   = 0.5
             
-            let processedImage = dodgeBlendImage.filterWithPipeline{input, output in
-                input --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> thresholdFilter --> output
-            }
             
+            let processedImage = image.filterWithPipeline{input, output in
+                input --> saturationFilter --> dodgeFilter
+                input --> saturationFilterTwo --> invertFilter --> blurFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> thresholdFilter --> output
+            }
+
+    
             return processedImage
         } else {
             return nil
         }
-        
+    
     }
-
+    
     
     /**
      
