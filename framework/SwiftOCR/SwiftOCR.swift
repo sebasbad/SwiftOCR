@@ -124,24 +124,21 @@ public class SwiftOCR {
      */
     
     internal func extractBlobs(image:UIImage?) -> [(UIImage, CGRect)] {
-        if let inputImage = image ?? self.image {
+        if let inputImage = image {
             let pixelData = CGDataProviderCopyData(CGImageGetDataProvider(inputImage.CGImage))
             let bitmapData: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
             
             //data <- bitmapData
             
-            let inputImageHeight = inputImage.size.height
-            let inputImageWidth  = inputImage.size.width
+            let numberOfComponents = CGImageGetBitsPerPixel(inputImage.CGImage) / CGImageGetBitsPerComponent(inputImage.CGImage)
             
-            var data = [UInt16](count: (Int(inputImageWidth) * Int(inputImageHeight)) * 4, repeatedValue: 0)
+            let inputImageHeight   = inputImage.size.height
+            let inputImageWidth    = inputImage.size.width
             
-            for y in 0..<Int(inputImageHeight) {
-                for x in 0..<Int(inputImageWidth) {
-                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * 4
-                    for i in 0..<4 {
-                        data[pixelInfo+i] = UInt16(bitmapData[pixelInfo+i])
-                    }
-                }
+            var data = [UInt16](count: (Int(inputImageWidth) * Int(inputImageHeight)) * numberOfComponents, repeatedValue: 0)
+            
+            for dataIndex in 0..<data.count {
+                data[dataIndex] = UInt16(round(Double(bitmapData[dataIndex])/255)*255)
             }
             
             //First Pass
@@ -157,9 +154,9 @@ public class SwiftOCR {
             
             for y in 0..<Int(inputImageHeight) {
                 for x in 0..<Int(inputImageWidth) {
-                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * 4
+                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * numberOfComponents
                     let pixelIndex:(Int, Int) -> Int = {x, y in
-                        return ((Int(inputImageWidth) * Int(y)) + Int(x))  * 4
+                        return ((Int(inputImageWidth) * Int(y)) + Int(x)) * numberOfComponents
                     }
                     
                     if data[pixelInfo] == 0 { //Is Black
@@ -220,10 +217,10 @@ public class SwiftOCR {
             
             for y in 0..<Int(inputImageHeight) {
                 for x in 0..<Int(inputImageWidth) {
-                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * 4
+                    let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * numberOfComponents
                     
                     if data[pixelInfo] != 255 {
-                        data[pixelInfo] = UInt16(parentArray.indexOf(labelsUnion.setOf(data[pixelInfo]) ?? 0) ?? 0) // * UInt16(255/parentArray.count)
+                        data[pixelInfo] = UInt16(parentArray.indexOf(labelsUnion.setOf(data[pixelInfo]) ?? 0) ?? 0)
                     }
                     
                 }
@@ -247,7 +244,7 @@ public class SwiftOCR {
                 
                 for y in 0..<Int(inputImageHeight) {
                     for x in 0..<Int(inputImageWidth) {
-                        let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * 4
+                        let pixelInfo: Int = ((Int(inputImageWidth) * Int(y)) + Int(x)) * numberOfComponents
                         
                         if data[pixelInfo] == UInt16(label) {
                             minX = min(minX, x)
@@ -371,14 +368,12 @@ public class SwiftOCR {
         
         if let image = inputImage ?? image {
             
-            let saturationFilter    = SaturationAdjustment()
-            let saturationFilterTwo = SaturationAdjustment()
+            let grayScaleFilter     = Luminance()
+            let grayScaleFilterTwo  = Luminance()
             let invertFilter        = ColorInversion()
-            let blurFilter          = BoxBlur()
+            let blurFilter          = SingleComponentGaussianBlur()
             let dodgeFilter         = ColorDodgeBlend()
             
-            saturationFilter.saturation    = -2.0
-            saturationFilterTwo.saturation = -2.0
             blurFilter.blurRadiusInPixels  = 10
             
             let medianFilter           = MedianFilter()
@@ -387,23 +382,17 @@ public class SwiftOCR {
             let firstBrightnessFilter  = BrightnessAdjustment()
             let contrastFilter         = ContrastAdjustment()
             let secondBrightnessFilter = BrightnessAdjustment()
-            let thresholdFilter        = LuminanceThreshold()
             
-            bilateralFilter.distanceNormalizationFactor = 1.6
+            bilateralFilter.distanceNormalizationFactor = 2
             firstBrightnessFilter.brightness            = -0.28
             contrastFilter.contrast                     = 2.35
             secondBrightnessFilter.brightness           = -0.08
-            thresholdFilter.threshold                   = 0.5
             
-            
-            let processedImage = image.filterWithPipeline{input, output in
-                input --> saturationFilter --> dodgeFilter
-                input --> saturationFilterTwo --> invertFilter --> blurFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> thresholdFilter --> output
+            return image.filterWithPipeline{input, output in
+                input --> grayScaleFilter --> invertFilter --> dodgeFilter
+                input --> grayScaleFilterTwo --> blurFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> output
             }
-//                input --> saturationFilterTwo --> invertFilter --> blurFilter --> opacityFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> thresholdFilter --> output
-//            }
             
-            return processedImage
         } else {
             return nil
         }
@@ -739,13 +728,13 @@ public class SwiftOCR {
                 input --> saturationFilter --> dodgeFilter
                 input --> saturationFilterTwo --> invertFilter --> blurFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> thresholdFilter --> output
             }
-
-    
+            
+            
             return processedImage
         } else {
             return nil
         }
-    
+        
     }
     
     
