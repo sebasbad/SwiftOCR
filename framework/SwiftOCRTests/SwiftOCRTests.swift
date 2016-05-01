@@ -55,7 +55,7 @@ class SwiftOCRTests: XCTestCase {
             swiftOCRInstanceOne.image = testImageOne
             
             swiftOCRInstanceOne.recognize({ recognizedString in
-                //XCTAssertEqual(recognizedString, "GSYCNP")
+                XCTAssertEqual(recognizedString, "GSYCNP")
                 print(recognizedString)
                 expectionOne.fulfill()
             })
@@ -64,7 +64,7 @@ class SwiftOCRTests: XCTestCase {
             swiftOCRInstanceTwo.image = testImageTwo
             
             swiftOCRInstanceTwo.recognize({ recognizedString in
-                //XCTAssertEqual(recognizedString, "AB84ENS91")
+                XCTAssertEqual(recognizedString, "AB84ENS91")
                 print(recognizedString)
                 expectionTwo.fulfill()
             })

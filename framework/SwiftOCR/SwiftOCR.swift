@@ -389,8 +389,8 @@ public class SwiftOCR {
             secondBrightnessFilter.brightness           = -0.08
             
             return image.filterWithPipeline{input, output in
-                input --> grayScaleFilter --> invertFilter --> dodgeFilter
-                input --> grayScaleFilterTwo --> blurFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> output
+                input --> grayScaleFilter --> dodgeFilter
+                input --> grayScaleFilterTwo --> invertFilter --> blurFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> output
             }
             
         } else {
@@ -699,14 +699,12 @@ public class SwiftOCR {
         
         if let image = inputImage ?? image {
             
-            let saturationFilter    = SaturationAdjustment()
-            let saturationFilterTwo = SaturationAdjustment()
+            let grayScaleFilter     = Luminance()
+            let grayScaleFilterTwo  = Luminance()
             let invertFilter        = ColorInversion()
-            let blurFilter          = BoxBlur()
+            let blurFilter          = SingleComponentGaussianBlur()
             let dodgeFilter         = ColorDodgeBlend()
             
-            saturationFilter.saturation    = -2.0
-            saturationFilterTwo.saturation = -2.0
             blurFilter.blurRadiusInPixels  = 10
             
             let medianFilter           = MedianFilter()
@@ -715,22 +713,17 @@ public class SwiftOCR {
             let firstBrightnessFilter  = BrightnessAdjustment()
             let contrastFilter         = ContrastAdjustment()
             let secondBrightnessFilter = BrightnessAdjustment()
-            let thresholdFilter        = LuminanceThreshold()
             
-            bilateralFilter.distanceNormalizationFactor = 1.6
+            bilateralFilter.distanceNormalizationFactor = 2
             firstBrightnessFilter.brightness            = -0.28
             contrastFilter.contrast                     = 2.35
             secondBrightnessFilter.brightness           = -0.08
-            thresholdFilter.threshold                   = 0.5
             
-            
-            let processedImage = image.filterWithPipeline{input, output in
-                input --> saturationFilter --> dodgeFilter
-                input --> saturationFilterTwo --> invertFilter --> blurFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> thresholdFilter --> output
+            return image.filterWithPipeline{input, output in
+                input --> grayScaleFilter --> dodgeFilter
+                input --> grayScaleFilterTwo --> invertFilter --> blurFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> output
             }
-            
-            
-            return processedImage
+
         } else {
             return nil
         }
