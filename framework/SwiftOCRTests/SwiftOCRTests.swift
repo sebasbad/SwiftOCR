@@ -32,7 +32,7 @@ class SwiftOCRTests: XCTestCase {
             let swiftOCRInstance = SwiftOCR()
             swiftOCRInstance.image = testImage
             swiftOCRInstance.recognize({ recognizedString in
-                //XCTAssertEqual(recognizedString, "AB84ENS91")
+                XCTAssertEqual(recognizedString, "AB84ENS91")
                 print(recognizedString)
                 expection.fulfill()
             })

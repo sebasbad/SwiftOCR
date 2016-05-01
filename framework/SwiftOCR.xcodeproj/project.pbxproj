@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		370038041CD39D74004BF5C4 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370037FB1CD39D5D004BF5C4 /* GPUImage.framework */; };
-		370038051CD39D78004BF5C4 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370037FB1CD39D5D004BF5C4 /* GPUImage.framework */; };
 		370038121CD3A351004BF5C4 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370037FB1CD39D5D004BF5C4 /* GPUImage.framework */; };
 		370038131CD3A355004BF5C4 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370038011CD39D5D004BF5C4 /* GPUImage.framework */; };
+		372B9FD81CD5F6770030C1DC /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370038011CD39D5D004BF5C4 /* GPUImage.framework */; };
 		373ED0B31CC9071D00C4758B /* SwiftOCR.h in Headers */ = {isa = PBXBuildFile; fileRef = 373ED0B21CC9071D00C4758B /* SwiftOCR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		373ED0BA1CC9071D00C4758B /* SwiftOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED0AF1CC9071C00C4758B /* SwiftOCR.framework */; };
 		373ED0BF1CC9071D00C4758B /* SwiftOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373ED0BE1CC9071D00C4758B /* SwiftOCRTests.swift */; };
@@ -171,7 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				370038051CD39D78004BF5C4 /* GPUImage.framework in Frameworks */,
+				372B9FD81CD5F6770030C1DC /* GPUImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

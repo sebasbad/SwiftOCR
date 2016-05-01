@@ -371,9 +371,11 @@ public class SwiftOCR {
             let grayScaleFilter     = Luminance()
             let grayScaleFilterTwo  = Luminance()
             let invertFilter        = ColorInversion()
-            let blurFilter          = SingleComponentGaussianBlur()
+            let opacityFilter       = OpacityAdjustment()
+            let blurFilter          = GaussianBlur()
             let dodgeFilter         = ColorDodgeBlend()
-            
+    
+            opacityFilter.opacity = 0.93
             blurFilter.blurRadiusInPixels  = 10
             
             let medianFilter           = MedianFilter()
@@ -382,15 +384,17 @@ public class SwiftOCR {
             let firstBrightnessFilter  = BrightnessAdjustment()
             let contrastFilter         = ContrastAdjustment()
             let secondBrightnessFilter = BrightnessAdjustment()
+            let thresholdFilter        = LuminanceThreshold()
             
             bilateralFilter.distanceNormalizationFactor = 2
             firstBrightnessFilter.brightness            = -0.28
             contrastFilter.contrast                     = 2.35
             secondBrightnessFilter.brightness           = -0.08
+            thresholdFilter.threshold                   = 0.5
             
             return image.filterWithPipeline{input, output in
                 input --> grayScaleFilter --> dodgeFilter
-                input --> grayScaleFilterTwo --> invertFilter --> blurFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> output
+                input --> grayScaleFilterTwo --> invertFilter --> opacityFilter --> blurFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> thresholdFilter --> output
             }
             
         } else {
@@ -632,7 +636,6 @@ public class SwiftOCR {
                 let cropRect = rect.insetBy(dx: CGFloat(xMergeRadius), dy: CGFloat(yMergeRadius))
                 if let croppedCGImage = CGImageCreateWithImageInRect(cgImage, cropRect) {
                     let croppedImage = NSImage(CGImage: croppedCGImage, size: cropRect.size)
-                    print(croppedImage)
                     outputImages.append((croppedImage, cropRect))
                 }
             }
@@ -702,9 +705,11 @@ public class SwiftOCR {
             let grayScaleFilter     = Luminance()
             let grayScaleFilterTwo  = Luminance()
             let invertFilter        = ColorInversion()
-            let blurFilter          = SingleComponentGaussianBlur()
+            let opacityFilter       = OpacityAdjustment()
+            let blurFilter          = GaussianBlur()
             let dodgeFilter         = ColorDodgeBlend()
             
+            opacityFilter.opacity = 0.93
             blurFilter.blurRadiusInPixels  = 10
             
             let medianFilter           = MedianFilter()
@@ -713,17 +718,19 @@ public class SwiftOCR {
             let firstBrightnessFilter  = BrightnessAdjustment()
             let contrastFilter         = ContrastAdjustment()
             let secondBrightnessFilter = BrightnessAdjustment()
+            let thresholdFilter        = LuminanceThreshold()
             
             bilateralFilter.distanceNormalizationFactor = 2
             firstBrightnessFilter.brightness            = -0.28
             contrastFilter.contrast                     = 2.35
             secondBrightnessFilter.brightness           = -0.08
+            thresholdFilter.threshold                   = 0.5
             
             return image.filterWithPipeline{input, output in
                 input --> grayScaleFilter --> dodgeFilter
-                input --> grayScaleFilterTwo --> invertFilter --> blurFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> output
+                input --> grayScaleFilterTwo --> invertFilter --> opacityFilter --> blurFilter --> dodgeFilter --> medianFilter --> openingFilter --> bilateralFilter --> firstBrightnessFilter --> contrastFilter --> secondBrightnessFilter --> thresholdFilter --> output
             }
-
+            
         } else {
             return nil
         }
