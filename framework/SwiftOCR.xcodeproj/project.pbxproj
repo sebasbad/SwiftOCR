@@ -60,6 +60,8 @@
 		377885741CCCF37400A41020 /* TrainingBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856C1CCCF37400A41020 /* TrainingBackground_4.png */; };
 		37A2346A1CDF9A1800CB3323 /* SwiftOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778855C1CCCF11900A41020 /* SwiftOCRTests.swift */; };
 		37A2346B1CDFA5B200CB3323 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1491CC9521B00C4758B /* GPUImage.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		418FD68A1D95D6DA0044769E /* My-OCR-Network-01 in Resources */ = {isa = PBXBuildFile; fileRef = 418FD6891D95D6DA0044769E /* My-OCR-Network-01 */; };
+		418FD6A11D967D900044769E /* Swift-OCR-Network-03-84.1-ArialFont-CaseSensitiveOnlyLettersAndNumbersNoAccents in Resources */ = {isa = PBXBuildFile; fileRef = 418FD6A01D967D900044769E /* Swift-OCR-Network-03-84.1-ArialFont-CaseSensitiveOnlyLettersAndNumbersNoAccents */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +133,8 @@
 		3778856A1CCCF37400A41020 /* TrainingBackground_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_2.png; path = "Realistic Training Images/TrainingBackground_2.png"; sourceTree = "<group>"; };
 		3778856B1CCCF37400A41020 /* TrainingBackground_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_3.png; path = "Realistic Training Images/TrainingBackground_3.png"; sourceTree = "<group>"; };
 		3778856C1CCCF37400A41020 /* TrainingBackground_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_4.png; path = "Realistic Training Images/TrainingBackground_4.png"; sourceTree = "<group>"; };
+		418FD6891D95D6DA0044769E /* My-OCR-Network-01 */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "My-OCR-Network-01"; sourceTree = "<group>"; };
+		418FD6A01D967D900044769E /* Swift-OCR-Network-03-84.1-ArialFont-CaseSensitiveOnlyLettersAndNumbersNoAccents */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "Swift-OCR-Network-03-84.1-ArialFont-CaseSensitiveOnlyLettersAndNumbersNoAccents"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +198,8 @@
 			children = (
 				373ED0C91CC9076300C4758B /* SwiftOCR.swift */,
 				373ED0CA1CC9076300C4758B /* SwiftOCRTraining.swift */,
+				418FD6A01D967D900044769E /* Swift-OCR-Network-03-84.1-ArialFont-CaseSensitiveOnlyLettersAndNumbersNoAccents */,
+				418FD6891D95D6DA0044769E /* My-OCR-Network-01 */,
 				373ED1281CC912C000C4758B /* OCR-Network */,
 				373ED11E1CC90C4200C4758B /* Supporting files */,
 			);
@@ -459,7 +465,9 @@
 				375558181CDF7DA8008CED46 /* Test 3.png in Resources */,
 				373ED12E1CC914E400C4758B /* OCR-Network in Resources */,
 				3778856F1CCCF37400A41020 /* TrainingBackground_2.png in Resources */,
+				418FD6A11D967D900044769E /* Swift-OCR-Network-03-84.1-ArialFont-CaseSensitiveOnlyLettersAndNumbersNoAccents in Resources */,
 				377885711CCCF37400A41020 /* TrainingBackground_3.png in Resources */,
+				418FD68A1D95D6DA0044769E /* My-OCR-Network-01 in Resources */,
 				377885731CCCF37400A41020 /* TrainingBackground_4.png in Resources */,
 				377885681CCCF32A00A41020 /* Test 2.png in Resources */,
 				377885671CCCF32A00A41020 /* Test 1.png in Resources */,
