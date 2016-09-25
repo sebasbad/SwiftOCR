@@ -98,6 +98,7 @@ public class SwiftOCR {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             
             let preprocessedImage      = self.delegate?.preprocessImageForOCR(image) ?? self.preprocessImageForOCR(image)
+            //let preprocessedImage      = image
             
             let blobs                  = self.extractBlobs(preprocessedImage)
             var recognizedString       = ""
@@ -106,7 +107,8 @@ public class SwiftOCR {
             for blob in blobs {
                 
                 do {
-                    let blobData       = self.convertImageToFloatArray(blob.0, resize: true)
+                    //let blobData       = self.convertImageToFloatArray(blob.0, resize: true)
+                    let blobData       = self.convertImageRGBSumToFloatArray(blob.0, resize: true)
                     let networkResult  = try self.network.update(inputs: blobData)
                     
                     //Generate Output Character
