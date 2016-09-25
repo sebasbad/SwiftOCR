@@ -10,10 +10,32 @@ import GPUImage
 
 ///The characters the globalNetwork can recognize.
 ///It **must** be in the **same order** as the network got trained
-internal var recognizableCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+//internal var recognizableCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+//let ocrNetwork: String = "OCR-Network"
+
+//internal var recognizableCharacters = "abcçdefghijklmnñopqrstuvwxyzABCÇDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789!\"$%&/()=?^*[]{}¿¡\\|@#€"
+//let ocrNetwork: String = "My-OCR-Network-01"
+
+internal var recognizableCharacters = "abcçdefghijklmnñopqrstuvwxyzABCÇDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789"
+let ocrNetwork: String = "Swift-OCR-Network-03-84.1-ArialFont-CaseSensitiveOnlyLettersAndNumbersNoAccents"
 
 ///The FFNN network used for OCR
-internal var globalNetwork = FFNN.fromFile(NSBundle(forClass: SwiftOCR.self).URLForResource("OCR-Network", withExtension: nil)!) ?? FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
+//internal var globalNetwork = FFNN.fromFile(NSBundle(forClass: SwiftOCR.self).URLForResource("OCR-Network", withExtension: nil)!) ?? FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .CrossEntropy(average: false))
+
+internal var globalNetwork =
+    FFNN.fromFile(
+        NSBundle(forClass: SwiftOCR.self).URLForResource(ocrNetwork,
+                                                    withExtension: nil)!
+        )!
+            ?? FFNN(inputs: 321,
+                  hidden: 100,
+                  outputs: recognizableCharacters.characters.count,
+                  learningRate: 0.7,
+                  momentum: 0.4,
+                  weights: nil,
+                  activationFunction: .Sigmoid,
+                  errorFunction: .CrossEntropy(average: false))
 
 public class SwiftOCR {
     
