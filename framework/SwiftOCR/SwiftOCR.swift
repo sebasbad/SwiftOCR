@@ -505,6 +505,10 @@ public class SwiftOCR {
         
     }
     
+    public func preprocessImageForOCR(image:OCRImage) -> OCRImage {
+        return binarizeImageForOCR(image)
+    }
+    
     /**
      
      Uses the default preprocessing algorithm to binarize the image. It uses the [GPUImage framework](https://github.com/BradLarson/GPUImage).
@@ -514,7 +518,7 @@ public class SwiftOCR {
      
      */
     
-    public func preprocessImageForOCR(image:OCRImage) -> OCRImage {
+    public func binarizeImageForOCR(image:OCRImage) -> OCRImage {
         
         func getDodgeBlendImage(inputImage: OCRImage) -> OCRImage {
             let image  = GPUImagePicture(image: inputImage)
