@@ -60,6 +60,8 @@
 		377885741CCCF37400A41020 /* TrainingBackground_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3778856C1CCCF37400A41020 /* TrainingBackground_4.png */; };
 		37A2346A1CDF9A1800CB3323 /* SwiftOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3778855C1CCCF11900A41020 /* SwiftOCRTests.swift */; };
 		37A2346B1CDFA5B200CB3323 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 373ED1491CC9521B00C4758B /* GPUImage.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		418FD68A1D95D6DA0044769E /* My-OCR-Network-01 in Resources */ = {isa = PBXBuildFile; fileRef = 418FD6891D95D6DA0044769E /* My-OCR-Network-01 */; };
+		418FD6A11D967D900044769E /* Swift-OCR-Network-03-84.1-ArialFont-CaseSensitiveOnlyLettersAndNumbersNoAccents in Resources */ = {isa = PBXBuildFile; fileRef = 418FD6A01D967D900044769E /* Swift-OCR-Network-03-84.1-ArialFont-CaseSensitiveOnlyLettersAndNumbersNoAccents */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,20 @@
 			remoteGlobalIDString = BCE209E51943F20C002FEED8;
 			remoteInfo = GPUImageFramework;
 		};
+		418FD6311D95B24A0044769E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 418FD62B1D95B24A0044769E /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCF1A33414DDB1EC00852800;
+			remoteInfo = GPUImage;
+		};
+		418FD6331D95B24A0044769E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 418FD62B1D95B24A0044769E /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCE209E51943F20C002FEED8;
+			remoteInfo = GPUImageFramework;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +147,9 @@
 		3778856A1CCCF37400A41020 /* TrainingBackground_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_2.png; path = "Realistic Training Images/TrainingBackground_2.png"; sourceTree = "<group>"; };
 		3778856B1CCCF37400A41020 /* TrainingBackground_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_3.png; path = "Realistic Training Images/TrainingBackground_3.png"; sourceTree = "<group>"; };
 		3778856C1CCCF37400A41020 /* TrainingBackground_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrainingBackground_4.png; path = "Realistic Training Images/TrainingBackground_4.png"; sourceTree = "<group>"; };
+		418FD62B1D95B24A0044769E /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "SwiftOCR/GPUImage-master/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
+		418FD6891D95D6DA0044769E /* My-OCR-Network-01 */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "My-OCR-Network-01"; sourceTree = "<group>"; };
+		418FD6A01D967D900044769E /* Swift-OCR-Network-03-84.1-ArialFont-CaseSensitiveOnlyLettersAndNumbersNoAccents */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "Swift-OCR-Network-03-84.1-ArialFont-CaseSensitiveOnlyLettersAndNumbersNoAccents"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +191,7 @@
 		373ED0A51CC9071C00C4758B = {
 			isa = PBXGroup;
 			children = (
+				418FD62B1D95B24A0044769E /* GPUImage.xcodeproj */,
 				373ED0B11CC9071D00C4758B /* SwiftOCR */,
 				373ED0BD1CC9071D00C4758B /* SwiftOCRTests */,
 				373ED0B01CC9071C00C4758B /* Products */,
@@ -194,6 +214,8 @@
 			children = (
 				373ED0C91CC9076300C4758B /* SwiftOCR.swift */,
 				373ED0CA1CC9076300C4758B /* SwiftOCRTraining.swift */,
+				418FD6A01D967D900044769E /* Swift-OCR-Network-03-84.1-ArialFont-CaseSensitiveOnlyLettersAndNumbersNoAccents */,
+				418FD6891D95D6DA0044769E /* My-OCR-Network-01 */,
 				373ED1281CC912C000C4758B /* OCR-Network */,
 				373ED11E1CC90C4200C4758B /* Supporting files */,
 			);
@@ -276,6 +298,15 @@
 				375558171CDF7DA8008CED46 /* Test 3.png */,
 			);
 			path = "Test Images";
+			sourceTree = "<group>";
+		};
+		418FD62C1D95B24A0044769E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				418FD6321D95B24A0044769E /* libGPUImage.a */,
+				418FD6341D95B24A0044769E /* GPUImage.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,7 +414,6 @@
 				TargetAttributes = {
 					373ED0AE1CC9071C00C4758B = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 2VE8J8K99V;
 					};
 					373ED0B81CC9071D00C4758B = {
 						CreatedOnToolsVersion = 7.3;
@@ -408,6 +438,10 @@
 			productRefGroup = 373ED0B01CC9071C00C4758B /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 418FD62C1D95B24A0044769E /* Products */;
+					ProjectRef = 418FD62B1D95B24A0044769E /* GPUImage.xcodeproj */;
+				},
 				{
 					ProductGroup = 373ED1411CC9521B00C4758B /* Products */;
 					ProjectRef = 373ED0CF1CC908BD00C4758B /* GPUImage.xcodeproj */;
@@ -449,6 +483,20 @@
 			remoteRef = 373ED1481CC9521B00C4758B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		418FD6321D95B24A0044769E /* libGPUImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGPUImage.a;
+			remoteRef = 418FD6311D95B24A0044769E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		418FD6341D95B24A0044769E /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = 418FD6331D95B24A0044769E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -459,7 +507,9 @@
 				375558181CDF7DA8008CED46 /* Test 3.png in Resources */,
 				373ED12E1CC914E400C4758B /* OCR-Network in Resources */,
 				3778856F1CCCF37400A41020 /* TrainingBackground_2.png in Resources */,
+				418FD6A11D967D900044769E /* Swift-OCR-Network-03-84.1-ArialFont-CaseSensitiveOnlyLettersAndNumbersNoAccents in Resources */,
 				377885711CCCF37400A41020 /* TrainingBackground_3.png in Resources */,
+				418FD68A1D95D6DA0044769E /* My-OCR-Network-01 in Resources */,
 				377885731CCCF37400A41020 /* TrainingBackground_4.png in Resources */,
 				377885681CCCF32A00A41020 /* Test 2.png in Resources */,
 				377885671CCCF32A00A41020 /* Test 1.png in Resources */,
@@ -670,6 +720,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -694,6 +745,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
