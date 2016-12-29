@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C2DF0243C3D603F14BC9097ADB2E5594C42D3904",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "87D1B7E4A51F91C4AD42349280C514073621C789" : 9223372036854775807,
+    "C2DF0243C3D603F14BC9097ADB2E5594C42D3904" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5329D240-F34B-4423-9D9F-821A3DDF8354",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "87D1B7E4A51F91C4AD42349280C514073621C789" : "",
+    "C2DF0243C3D603F14BC9097ADB2E5594C42D3904" : "SwiftOCR\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SwiftOCR",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "framework\/SwiftOCR.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "bitbucket.org:sebasbad\/offline-ads-discovery-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "87D1B7E4A51F91C4AD42349280C514073621C789"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:sebasbad\/SwiftOCR.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C2DF0243C3D603F14BC9097ADB2E5594C42D3904"
+    }
+  ]
+}

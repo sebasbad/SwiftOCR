@@ -19,13 +19,13 @@ internal extension Array where Element: Hashable {
     }
 }
 
-extension Array where Element: _ArrayType, Element.Generator.Element: Any {
+extension Array where Element: _ArrayProtocol, Element.Iterator.Element: Any {
     func transpose() -> [Element] {
         if self.isEmpty { return [Element]() }
         let count = self[0].count
-        var out = [Element](count: count, repeatedValue: Element())
+        var out = [Element](repeating: Element(), count: count)
         for outer in self {
-            for (index, inner) in outer.enumerate() {
+            for (index, inner) in outer.enumerated() {
                 out[index].append(inner)
             }
         }
